@@ -1,0 +1,67 @@
+<!-- ... existing code ... -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl neon-glow">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-white tracking-wide">NightModz Control Panel</h1>
+                    <p class="text-xs text-cyan-400">ระบบควบคุม & อัปเดตข้อมูลแอปพลิเคชัน NightModz</p>
+                </div>
+            </div>
+            <div id="connectionStatus" class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-xs">
+<!-- ... existing code ... -->
+            <!-- 1. Firebase URL Settings -->
+            <div class="bg-brand-card rounded-2xl p-6 border border-slate-800 shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <h2 class="text-lg font-semibold text-white flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-database text-cyan-400"></i> การเชื่อมต่อ Firebase Realtime Database
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Firebase Realtime Database URL</label>
+                        <div class="flex gap-2">
+                            <input type="url" id="firebaseUrl" placeholder="https://nightmodz-default-rtdb.firebaseio.com/APP_UPDATE.json" 
+                                class="flex-1 bg-slate-900 border border-slate-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 rounded-xl px-4 py-2.5 text-sm text-slate-200 outline-none transition">
+                            <button onclick="testAndLoadFirebase()" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-cyan-500/30 px-4 py-2.5 rounded-xl text-sm font-medium transition flex items-center gap-2 whitespace-nowrap">
+                                <i class="fa-solid fa-plug"></i> เชื่อมต่อ & โหลดข้อมูล
+                            </button>
+                        </div>
+                        <p class="text-[11px] text-slate-500 mt-1.5">* หมายเหตุ: ลงท้ายด้วย <code class="text-cyan-400">/APP_UPDATE.json</code> หรือโหนดข้อมูลที่คุณต้องการจัดการ</p>
+                    </div>
+                </div>
+            </div>
+<!-- ... existing code ... -->
+    <script>
+        // Init state
+        const defaultData = {
+            version: "1.0.0",
+            url: "https://example.com/app.apk",
+            maintenance: false,
+            force_update: false,
+            changelog: "• อัปเดตปรับปรุงระบบประจำเดือน\n• เพิ่มความเร็วในการเชื่อมต่อ",
+            accent_color: "#00b4d8"
+        };
+
+        window.onload = () => {
+            // Fill default form values
+            document.getElementById('appVersion').value = defaultData.version;
+            document.getElementById('downloadUrl').value = defaultData.url;
+            document.getElementById('maintenanceSwitch').checked = defaultData.maintenance;
+            document.getElementById('forceUpdateSwitch').checked = defaultData.force_update;
+            document.getElementById('changelog').value = defaultData.changelog;
+            document.getElementById('appColorHex').value = defaultData.accent_color;
+            document.getElementById('appColorPicker').value = defaultData.accent_color;
+
+            // Sync Base64 input
+            const defaultUrl = "https://nightmodz-default-rtdb.firebaseio.com/APP_UPDATE.json";
+            document.getElementById('firebaseUrl').value = defaultUrl;
+            document.getElementById('base64Input').value = defaultUrl;
+            
+            updatePreview();
+        };
+// ... existing code ...
+    <!-- Footer -->
+    <footer class="mt-auto pt-8 border-t border-slate-800/60 text-center text-xs text-slate-500">
+        NightModz Control Panel Dashboard • รองรับ Firebase Realtime Database
+    </footer>
+<!-- ... existing code ... -->
